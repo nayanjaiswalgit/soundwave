@@ -15,7 +15,7 @@ const Sidebar = () => {
       : "flex  items-center gap-2 pl-6 h-12 rounded-r-full";
 
   return (
-    <div className="w-72 flex  h-full bg-[#1ED760]  flex-col  fixed text-xl   ">
+    <div className="min-w-96   h-full bg-[#1ED760]  flex-col  relative text-xl   ">
       <div className="mx-auto mt-6">
         <img src={logo} alt="logo" />
       </div>
