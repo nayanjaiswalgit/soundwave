@@ -1,17 +1,17 @@
 
-import { CiSearch } from "react-icons/ci";
+import SearchBar from "../components/SearchBar";
+import SearchResult from "../components/SearchResult";
+import TopResults from "../components/TopResults";
+
 const Search = () => {
   return (
-<div  className="w-screen">
-  <div className="relative w-full">
-    <input type="text"  id="search"  name="search" placeholder="Search for artists, music and genres" />
-  </div>
-  <label htmlFor="search absolute">
-    <CiSearch/>
-  </label>
-</div>
+    <div className="mx-10 my-8">
+    
+     <SearchBar/>
+     <TopResults/>
+   <SearchResult/>
+    </div>
+  );
+};
 
-  )
-}
-
-export default Search
+export default Search;

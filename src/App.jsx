@@ -1,7 +1,9 @@
 import "./App.css";
 import {
+
   Route,
   createBrowserRouter,
+
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
@@ -11,21 +13,25 @@ import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import RootLayout from "./components/rootLayout";
 
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<RootLayout />}>
-        <Route index element={<Home />} />
+      <>
+      <Route  element={<RootLayout/>}>
+        <Route path="/" element={<Home />}  />
         <Route path="/profile" element={<Profile />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/login" element={<Login />} />
+     
+        
       </Route>
-      
+      <Route path="/login" element={<Login />} />
+      </>
     )
   );
 
   return (
-    <div>
+    <div className="h-screen flex max-w-screen overflow-hidden">
       <RouterProvider router={router} />
     </div>
   );

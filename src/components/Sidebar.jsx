@@ -6,6 +6,7 @@ import { BiSolidPlaylist } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 
+
 const Sidebar = () => {
   const sylenav = ({ isActive, isPending }) =>
     isPending
@@ -15,11 +16,12 @@ const Sidebar = () => {
       : "flex  items-center gap-2 pl-6 h-12 rounded-r-full";
 
   return (
-    <div className="min-w-96   h-full bg-[#1ED760]  flex-col  relative text-xl   ">
+    <div className="flex w-[354px] h-full bg-[#1ED760]  flex-col  relative text-xl   flex-grow-1">
+       
       <div className="mx-auto mt-6">
         <img src={logo} alt="logo" />
       </div>
-      <div className="flex flex-col gap-4 mt-10 ">
+      <div className="flex flex-col gap-4 pt-10 ">
         <NavLink to="/" className={sylenav}>
           <AiFillHome /> <p>Home</p>
         </NavLink>
@@ -40,6 +42,7 @@ const Sidebar = () => {
         <MdLogout />
         <p>Logout</p>
       </Link>
+     
     </div>
   );
 };
