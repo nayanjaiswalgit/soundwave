@@ -5,7 +5,7 @@ import TopResults from "../components/TopResults";
 
 const Search = () => {
   return (
-    <div className="mx-10 my-8">
+    <div className="mx-10 my-8 overflow-auto">
     
      <SearchBar/>
      <TopResults/>

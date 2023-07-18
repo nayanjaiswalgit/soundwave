@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="w-full p-[42px]">
       <div className="flex justify-between">
-        <div className="text-6xl text-[#1ED760] mb-[44px]">Good Evening!</div>
+        <div className="text-6xl text-[#1ED760] ">Good Evening!</div>
         <div className="h-16 flex items-center ">
           <button className="relative self ">
             <BsBellFill className="text-4xl white" />
@@ -18,7 +18,13 @@ const Home = () => {
           </button>
         </div>
       </div>
+      <div >
       <Playlist />
+      <Playlist />
+      <Playlist />
+      <Playlist />
+      </div>
+    
     </div>
   );
 };

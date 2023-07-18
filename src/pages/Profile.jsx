@@ -1,8 +1,12 @@
+
 import pic from "../assets/pic.png";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import {useSelector }from 'react-redux';
 const Profile = () => {
+ const user =  useSelector(state => state.user);
+ console.log(user);
   return (
-    <div className=" w-full mt-12 ml-[73px] ">
+    <div className=" mt-12 ml-[73px] ">
       <p className="text-5xl  font-semibold">Profile</p>
       <div className="flex  mt-12 items-center flex-wrap">
         <div>

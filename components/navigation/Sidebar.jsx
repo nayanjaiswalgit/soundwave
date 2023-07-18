@@ -1,4 +1,4 @@
-import logo from "../assets/logowhite.png";
+import logo from "../../assets/logowhite.png";
 import { AiFillHome } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { CiSearch } from "react-icons/ci";
@@ -16,13 +16,13 @@ const Sidebar = () => {
       : "flex  items-center gap-2 pl-6 h-12 rounded-r-full";
 
   return (
-    <div className="flex w-[354px] h-full bg-[#1ED760]  flex-col  relative text-xl   flex-grow-1">
+    <div className="flex w-[22rem] h-full bg-[#1ED760]  flex-col  relative text-xl   flex-grow-1">
        
       <div className="mx-auto mt-6">
         <img src={logo} alt="logo" />
       </div>
-      <div className="flex flex-col gap-4 pt-10 ">
-        <NavLink to="/" className={sylenav}>
+      <div className="flex flex-col gap-4 pt-10  font-medium">
+        <NavLink to="/home" className={sylenav}>
           <AiFillHome /> <p>Home</p>
         </NavLink>
         <NavLink   to="/profile" className={sylenav}>
