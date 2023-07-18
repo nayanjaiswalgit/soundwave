@@ -1,9 +1,7 @@
 import "./App.css";
 import {
-
   Route,
   createBrowserRouter,
-
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
@@ -13,9 +11,10 @@ import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import RootLayout from "./components/navigation/RootLayout";
 import { Provider } from "react-redux";
-import store from "./store/store";
+import store from "./store/configureStore";
 
 function App() {
+  
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>

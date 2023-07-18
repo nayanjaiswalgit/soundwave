@@ -4,10 +4,11 @@ import { signUpSchema } from "../schemas";
 import { FaLock } from "react-icons/fa";
 import { BiUserCircle } from "react-icons/bi";
 
-
-
-import { useDispatch, useSelector } from "react-redux";
 import { fetchProfileSuccess } from "../features/user/userSlice";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { redirectToAuthCodeFlow } from "../auth";
+
 
 
 const initialValues = {
@@ -15,19 +16,11 @@ const initialValues = {
   password: "",
 };
 
-
 const Login = () => {
-
-
-  const dispatch = useDispatch();
-  const userProfile = useSelector( (state) => state.user.profile);
-  const isLoading = useSelector((state) =>state.user.isLoading);
-  const error = useSelector((state) => state.user.error);
-
-
+  
+   
 
   
-
   const {
     values,
     errors,
@@ -39,12 +32,8 @@ const Login = () => {
   } = useFormik({
     initialValues: initialValues,
     validationSchema: signUpSchema,
-    onSubmit: (value) => {
-      dispatch(fetchProfileSuccess('Hello'))
-      
-    
-   
-      
+    onSubmit: () => {
+      redirectToAuthCodeFlow();
     },
   });
   return (
@@ -53,11 +42,11 @@ const Login = () => {
         <div>
           <img src={logo} alt="logo" />
         </div>
+
         <p className="md:self-start text-3xl">Login</p>
         <form onSubmit={handleSubmit} className="flex gap-6 flex-col">
           <div className="flex justify-start items-center bg-[#0F0F0F]  md:w-[80vh] p-3 rounded-full gap-2">
             <label htmlFor="email">
-              {" "}
               <BiUserCircle className="text-2xl mx-1" />
             </label>
             <input

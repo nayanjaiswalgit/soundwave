@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+const   initialState = {
+  profile: null,
+  isLoading: false,
+  error: null,
+}
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: {
-    profile: null,
-    isLoading: false,
-    error: null,
-  },
+  initialState,
   reducers: {
     fetchProfileStart(state) {
       state.isLoading = true;
@@ -14,7 +15,7 @@ const userSlice = createSlice({
     },
     fetchProfileSuccess(state, action) {
       state.profile = action.payload;
-      state.isLoading = false;
+      state.isLoading = true;
     },
     fetchProfileFailure(state, action) {
       state.isLoading = false;
