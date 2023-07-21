@@ -2,7 +2,7 @@ import React from 'react'
 import serach from "../assets/search.svg";
 const SearchBar = () => {
   return (
-    <div className=" text-white md:min-w-[1002px] h-[59px] bg-[#2E2E2E] relative rounded-3xl flex justify-center items-center ">
+    <div className=" text-white  h-[59px] bg-[#2E2E2E] relative rounded-3xl flex justify-center items-center ">
         <input
           className="w-full bg-[#2E2E2E] outline-none pl-[71px] pr-3 py-2 rounded-full pt-4 text-xl placeholder-white placeholder:text-2xl placeholder:font-medium my-auto"
           type="text"

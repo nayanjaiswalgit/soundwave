@@ -2,21 +2,16 @@ import Searchlist from "./searchlist"
 
 
 
-const SearchResult = () => {
+const SearchResult = ({data}) => {
+  console.log(data);
   return (
   <div className="mt-12 font-semibold">
     <p className="text-4xl">Songs</p>
    <div className="overflow-y-auto mt-6 ">
-   <Searchlist/>
-    <Searchlist/>
-    <Searchlist/>
-    <Searchlist/>
-    <Searchlist/>
-    <Searchlist/>
-    <Searchlist/>
-    <Searchlist/>
-    <Searchlist/>
-    <Searchlist/>
+   
+   {data.map((track,index)=> <Searchlist key={index} track={track}/>)}
+  
+    
    </div>
   
   </div>

@@ -10,19 +10,34 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import RootLayout from "./components/navigation/RootLayout";
-import { Provider } from "react-redux";
-import store from "./store/configureStore";
+import { useEffect } from "react";
+import { fetchUserProfile } from "./features/user/userSlice";
+import { useDispatch } from "react-redux";
+
+
+
+
 
 function App() {
-  
+  const dispatch = useDispatch() ; 
+ 
+useEffect(() => {
+ 
+  dispatch(fetchUserProfile())
+
+  return () => {
+   
+  }
+}, [])
+
+ console.log("aap")
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-      <Route  element={<RootLayout/>}>
-        <Route path="/profile" element={<Profile />} />
+  <Route  element={<RootLayout/>}>
+       <Route path="/profile" element={<Profile />} />
         <Route path="/search" element={<Search />} />
         <Route path="/*" element={<Home />}  />
-    
      
         
       </Route>
@@ -32,11 +47,12 @@ function App() {
   );
 
   return (
-    <Provider store={store}>
+  
     <div className="h-screen flex max-w-screen overflow-hidden">
-      <RouterProvider router={router} />
+<RouterProvider router={router} />
+
     </div>
-    </Provider>
+   
   );
 }
 
