@@ -3,11 +3,16 @@ import { useFormik } from "formik";
 import { signUpSchema } from "../schemas";
 import { FaLock } from "react-icons/fa";
 import { BiUserCircle } from "react-icons/bi";
+import { auth } from "../../AuthorizationPage";
 
-import { fetchProfileSuccess } from "../features/user/userSlice";
-import { useDispatch } from "react-redux";
+
 import { useEffect } from "react";
-import { redirectToAuthCodeFlow } from "../auth";
+
+
+
+
+const params = new URLSearchParams(window.location.search);
+const code = params.get('code');
 
 
 
@@ -16,10 +21,36 @@ const initialValues = {
   password: "",
 };
 
-const Login = () => {
-  
-   
 
+
+const Login = () => {
+
+  useEffect(() => {
+    const test = async() => { 
+    if(code){
+      const user  = await auth();
+      console.log(user);
+      if(user.href){
+        console.log(user)
+      
+      setTimeout(() => {
+        document.location ="http://localhost:5173/home" ;
+      }, 1000);}
+     else{
+      document.location ="http://localhost:5173/login" ;
+     }
+     
+    }
+   
+    }
+    test();
+    return () => {
+     
+    }
+  }, [])
+  
+    
+  
   
   const {
     values,
@@ -33,7 +64,7 @@ const Login = () => {
     initialValues: initialValues,
     validationSchema: signUpSchema,
     onSubmit: () => {
-      redirectToAuthCodeFlow();
+      auth();
     },
   });
   return (
