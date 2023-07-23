@@ -20,7 +20,7 @@ const Home = () => {
   var user =  useSelector(state => state.user.profile);
   var Featured_playlist  = useSelector(state => state?.playlist?.playlists[0]?.payload?.playlists.items);
   var This_week_song =  useSelector(state => state?.song?.songs[0]?.items);
-  console.log("hello", This_week_song)
+  console.log("hello", user)
 
   
   return (

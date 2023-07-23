@@ -8,9 +8,11 @@ const initialState = {
 }
 
 export const  fetchThisWeekSongs = createAsyncThunk(
-    'song/fetchThisWeekSongs', async()=>{
-        return fetchData("https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/tracks")
-    }
+    'song/fetchThisWeekSongs', async(url)=>{
+      console.log("fetch");
+        const data = fetchData(url)
+      return data;
+      }
 )
 const trackSlice = createSlice({
     name : "Playlist Track", 
@@ -23,9 +25,10 @@ const trackSlice = createSlice({
             state.error = false;
           })
           .addCase(fetchThisWeekSongs.fulfilled, (state, action) => {
+
             console.log(action.payload)
             state.isLoading = true;
-            state.songs.push(action.payload);
+            state.songs = action.payload;
           })
           .addCase(fetchThisWeekSongs.rejected, (state, action) => {
             (state.isLoading = false), (state.error = action.error.message);

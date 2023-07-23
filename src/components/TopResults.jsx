@@ -1,11 +1,11 @@
 
 import topcart from "../assets/top-card.png";
-const TopResults = ({data}) => {
+const   TopResults = ({data}) => {
   console.log(data);
   return (
     <div>
     <p className="text-4xl mt-16 text-white font-semibold">TopResults</p>
-    <div className="md:w-[523px] md:h-[303px] w-[75%] overflow-hidden rounded-3xl relative mt-7 ">
+    <div className="md:max-w-[523px] md:max-h-[303px] w-fit overflow-hidden rounded-3xl relative mt-7 ">
       <img
         src={data.images[0].url}
         alt=""

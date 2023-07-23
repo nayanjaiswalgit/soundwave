@@ -5,7 +5,7 @@ import { IoPause } from "react-icons/io5";
 import { IoPlaySkipBackSharp } from "react-icons/io5";
 import { IoPlaySkipForwardSharp } from "react-icons/io5";
 
-const Control = ({setPlay,audioRef,play}) => {
+const Control = ({setPlay,audioRef,play,setSong}) => {
 
 
   useEffect(() => {
@@ -30,9 +30,9 @@ const Control = ({setPlay,audioRef,play}) => {
   return (
     <div className="text-xl flex gap-5 justify-center items-center ">
     
-      <IoPlaySkipBackSharp  className="cursor-pointer"/>
+<button onClick={()=>setSong((prev)=>prev-1)}><IoPlaySkipBackSharp  /></button>
     <button onClick={clickHandler}> {play ?  <IoPause  />:<IoMdPlay   />}</button>
-      <IoPlaySkipForwardSharp   className="cursor-pointer"/>
+   <button onClick={()=>setSong((prev)=>prev+1)} > <IoPlaySkipForwardSharp  /></button>  
     </div>
   );
 };

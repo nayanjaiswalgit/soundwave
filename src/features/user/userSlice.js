@@ -6,6 +6,7 @@ const initialState = {
   profile: null,
   isLoading: false,
   error: null,
+  isLogin: false
 }
 
 // Async thunk to fetch user profile
@@ -25,10 +26,12 @@ const userSlice = createSlice({
       .addCase(fetchUserProfile.pending, (state) => {
         state.isLoading = true;
         state.error = null;
+
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         state.profile = action.payload;
+        state.isLogin = true
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.isLoading = false;

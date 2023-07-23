@@ -1,12 +1,12 @@
 
 import pic from "../../assets/pic.png";
-const NowPlayingBox = () => {
+const NowPlayingBox = ({data}) => {
   return (
     <div className="flex justify-center items-center  ">
-      <img src={pic} alt="" className="w-20" />
+      <img src={data?.track?.album?.images[1]?.url} alt="" className="w-20" />
       <div className="  h-full ml-5 ">
-        <p className="text-lg font-semibold  ">Song Name</p>
-        <p className="text-sm font-medium my-2  leading-4">Artish Name</p>
+        <p className="text-lg font-semibold  ">{data.track?.album.name}</p>
+        <p className="text-sm font-medium my-2  leading-4">{data.track?.artists.map(name=>name.name)+" , "}</p>
       </div>
     </div>
   );
