@@ -5,13 +5,12 @@ import { CiSearch } from "react-icons/ci";
 import { BiSolidPlaylist } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
 import { Link, NavLink, } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LogOut } from "../../features/authSlice";
+import Track from "../player/Track";
 
 const Sidebar = () => {
-  const clickHandler = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("refresh_token");
-    localStorage.removeItem("verifier");
-  };
+const dispatch = useDispatch();
   const style = ({ isActive, isPending }) =>
     isPending
       ? " flex  items-center gap-2 pl-6 h-12 rounded-r-full"
@@ -41,14 +40,16 @@ const Sidebar = () => {
           <p>Feature Playlist</p>
         </NavLink>
       </div>
+
       <Link to={"/login"}>
         <button
-          onClick={clickHandler}
+          onClick={()=>dispatch(LogOut())}
           className=" gap-2  bottom-3 absolute flex  items-center  pl-6 h-12 rounded-r-full"
         >
           Logout <MdLogout />{" "}
         </button>{" "}
       </Link>
+ 
     </div>
   );
 };

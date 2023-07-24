@@ -28,7 +28,7 @@ const MusicPlaylist = ({ Featured_playlist, Name }) => {
 };
 
 MusicPlaylist.propTypes = {
-  Featured_playlist: PropTypes.array.isRequired,
+  Featured_playlist: PropTypes.array,
   Name: PropTypes.string.isRequired,
 };
 

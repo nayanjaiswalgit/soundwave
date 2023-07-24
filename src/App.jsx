@@ -1,38 +1,55 @@
 import "./App.css";
-import { Route, Navigate, BrowserRouter, Routes } from "react-router-dom";
+import {
+  Route,
+  Navigate,
+  BrowserRouter,
+  Routes,
+  
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import RootLayout from "./components/navigation/RootLayout";
 import { useEffect } from "react";
-import { fetchUserProfile } from "./features/user/userSlice";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 
 import NotFoundPage from "./components/NotFoundPage";
-import { getAccessTokenFromRefreshToken } from "../AuthorizationPage";
+import {
 
-const user = true;
+  getAccessTokenFromRefreshToken,
+} from "../AuthorizationPage";
+import { UserProfile} from "./features/authSlice";
+import { fetchThisWeekSongs } from "./features/track/trackSlice";
+import { fetchPlaylist } from "./features/playlist/PlaylistSlice";
+
 function App() {
-  const getTokenFromStorage = () => localStorage.getItem("token");
-  const getRefreshTokenFromStorage = () => localStorage.getItem("refresh_token");
 
+  const user = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
+ 
+  let token = localStorage.getItem("token");
+ 
+  const loginflow = () => {
+    token = localStorage.getItem("token");
+    const refresh_token = localStorage.getItem("refresh_token");
+
+    if(token && !user.href){
+      console.log("flow is working")
+      getAccessTokenFromRefreshToken(refresh_token);
+      dispatch(UserProfile());
+    }
+    console.log("failed")
+  }
+  
   function useAuth() {
-    const token = getTokenFromStorage () ;
-    const refreshToken = getRefreshTokenFromStorage () ;
-
-    if (user) {
-
+  
+    if ( token ) {
+      console.log(user)
       return true;
     }
-    else if (token && refreshToken ) {
-      getAccessTokenFromRefreshToken(refreshToken);
-
-
-    }
-    else {
-      return false
-    }
+    return false;
   }
 
   function PrivateOutlet() {
@@ -40,13 +57,13 @@ function App() {
     return auth ? <RootLayout /> : <Navigate to="/login" />;
   }
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    const token = getTokenFromStorage();
+   loginflow()
+    
+    dispatch(fetchPlaylist());
+    dispatch(fetchThisWeekSongs());
 
-    dispatch(fetchUserProfile());
-
+ 
     return () => {};
   }, []);
 

@@ -5,34 +5,31 @@ import Player from "./Player";
 import { useEffect, useState } from "react";
 import { fetchTrack } from "../../features/player/playerSlice";
 
-const Track = () => {
-  const selector = useSelector(state=>state.track?.tracks.tracks);
+const Track = ({track}) => {
+  
+
+  const array = useSelector(state=>state.track.currentPlaying);
+  const current = useSelector(state=>state.track.tracker);
   const [song,setSong] = useState(0);
+  const [isPlaying,setPlay] = useState(false);
   const dispatch = useDispatch()
 
+  
   useEffect(() => {
-    dispatch(fetchTrack());
+    
   
     return () => {
       
     }
-  }, [])
-
- 
-  const isMusicPlaying = false; // Assume music is playing for the example
-
-  if (!isMusicPlaying) {
-    return null; // Don't render the music player if music is not playing
-  }
-
-  
-  
+  }, [isPlaying,array.length])
+console.log('hello')
 
   return (
     <div className="bg-gray-800 h-[129px] flex fixed left-0 bottom-0 w-screen justify-between items-center px-9    ">
     
-      <NowPlayingBox data = {selector?.items[song]} />
-      <Player data = {selector?.items[song]}  setSong={setSong} song={song} /> 
+    {array.length > 0 && <NowPlayingBox data = {array[current]} />}
+
+   
     </div>
   );
 };

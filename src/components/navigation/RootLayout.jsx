@@ -1,42 +1,35 @@
-import { Navigate, Outlet } from "react-router-dom"
+import {  Outlet } from "react-router-dom"
 import Sidebar from "./Sidebar"
 import Track from "../player/Track"
+
+import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchData } from "../../api/spotifyAPI";
-
-function useAuth() {
-  return !!localStorage.getItem("token");
-}
+import NowPlayingBox from "../player/NowPlayingBox";
 
 
 
-
-const track =false;
 const RootLayout = () => {
+  const current = useSelector(state=>state.track.currentPlaying);
+  const cheack = useSelector(state=>state.track.tracker);
+
   useEffect(() => {
-    const data = async() => {
-     const response =  await fetchData("https://api.spotify.com/v1/me/player/recently-played");
-     console.log(response) ;
-    }
-  data();
   
-    return () => {
-    }
-     
-  }, [])
+
+  }, [cheack])
+  console.log(current);
   
   return (
 
-    <div  className={`${ track ? 'h-[calc(100vh-8rem)]' : 'h-full' }  flex `}>
+    <div  className={`${ cheack ? 'h-[calc(100vh-8rem)]' : 'h-full' }  flex `}>
        
         <Sidebar />
 
    
-    <div className="md:w-[calc(100vw-22rem)]  w-screen overflow-auto">
+    <div className="md:w-[calc(100vw-22rem)]  overflow-auto">
     <Outlet/>
-    </div>
- { track && <Track/>} 
 
+    </div>
+  {  cheack && <Track/>}
     </div>
 
   )

@@ -1,4 +1,6 @@
 import { IoMdPlay } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import { add } from "../features/player/playerSlice";
 
 function millisToMinutesAndSeconds(millis) {
   var minutes = Math.floor(millis / 60000);
@@ -7,9 +9,9 @@ function millisToMinutesAndSeconds(millis) {
 }
 
 const Searchlist = ({track}) => {
-  console.log(track)
+ const dispatch = useDispatch()
   return (
-    <div className=" h-[81px] flex justify-between items-center gap-4 py-3 px-[20px]">
+    <div className=" h-[81px] flex justify-between items-center gap-4 py-3 px-[20px]" onClick={()=>dispatch(add(track))}>
       <div className=" flex justify-between align-center">
         <div className="min:w-[58px] h-[58px]">
           <img src={track?.album.images[2]?.url} alt="" />

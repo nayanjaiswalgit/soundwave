@@ -5,7 +5,7 @@ import {useSelector }from 'react-redux';
 
 const Profile = () => {
 
- var user =  useSelector(state => state.user.profile);
+ var user =  useSelector(state => state.auth.user);
 
   return (
     <div className=" mt-12 ml-[73px] ">

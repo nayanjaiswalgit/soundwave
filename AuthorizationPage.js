@@ -1,6 +1,6 @@
 
 
-const clientId = "10a6a679992847328290f17973ad3115";
+const clientId = "13ea06586b374e579289bb025106a4ae";
 export const auth = async () => {
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
@@ -91,8 +91,13 @@ export async function getAccessToken(clientId, code) {
     });
 
   const response = await result.json();
-  localStorage.setItem("refresh_token",response.refresh_token);
-  localStorage.setItem("token",response.access_token);
+
+  if(response.token){
+    localStorage.setItem("token",response.token);
+    localStorage.setItem("refresh_token",response.refresh_token);
+  }
+  console.log(response)
+  
 
   return response.access_token;
 }

@@ -1,8 +1,12 @@
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { fetchTrack } from "../features/player/playerSlice";
 
 const Card = ({ data }) => {
+
+  const dispatch = useDispatch();
   return (
-    <div className="w-[317px] h-[328px] bg-[#242424] rounded-2xl  cursor-pointer relative">
+    <div className="w-[317px] h-[328px] bg-[#242424] rounded-2xl  cursor-pointer relative" onClick={()=>dispatch(fetchTrack(data.href))}>
       <div className="  overflow-hidden">
         <img
           src={data?.images[0]?.url}
@@ -18,6 +22,6 @@ const Card = ({ data }) => {
   );
 };
 Card.propTypes = {
-  data: PropTypes.isRequired,
+  data: PropTypes.object,
 };
 export default Card;

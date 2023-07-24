@@ -1,6 +1,6 @@
 const token = localStorage.getItem("token");
 
-export const fetchData = async (url, query) => {
+export const fetchData = async (url) => {
   try {
     const response = await fetch(url, {
       method: "GET",

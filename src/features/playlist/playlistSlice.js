@@ -23,7 +23,7 @@ const playlistSlice = createSlice({
         state.error = false;
       })
       .addCase(fetchPlaylist.fulfilled, (state, action) => {
-        state.isLoading = true;
+        state.isLoading = false;
         state.playlists.push(action);
       })
       .addCase(fetchPlaylist.rejected, (state, action) => {

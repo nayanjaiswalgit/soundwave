@@ -8,7 +8,6 @@ const Playlist = ({ playlist, Name }) => {
   return (
     <div className="w-full mt-[44px] overflow-hidden">
       <div className="flex justify-between items-center mb-7 text-2xl ">
-        {" "}
         <p className="">{Name}</p>
         <button
           className="text-[#1ED760] text-xl "
@@ -19,7 +18,9 @@ const Playlist = ({ playlist, Name }) => {
       </div>
       <div className={` flex  gap-5 w-fit  ${seeAll && "flex-wrap"}`}>
         {playlist?.map((data, index) => {
-          return <Card key={index} data={data} />;
+          return (
+            <Card key={index} data={data} onClick={() => console.log(data)} />
+          );
         })}
       </div>
     </div>
@@ -27,7 +28,7 @@ const Playlist = ({ playlist, Name }) => {
 };
 
 Playlist.propTypes = {
-  playlist: PropTypes.array.isRequired,
+  playlist: PropTypes.array,
   Name: PropTypes.string.isRequired,
 };
 export default Playlist;

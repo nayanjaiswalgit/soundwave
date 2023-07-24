@@ -10,7 +10,6 @@ import { useEffect } from "react";
 
 
 
-
 const params = new URLSearchParams(window.location.search);
 const code = params.get('code');
 
@@ -25,6 +24,7 @@ const initialValues = {
 
 const Login = () => {
 
+ 
   useEffect(() => {
     const test = async() => { 
       
@@ -32,6 +32,7 @@ const Login = () => {
       const user  = await auth();
       console.log(user);
       if(user.href){
+       
         console.log(user)
       
       setTimeout(() => {

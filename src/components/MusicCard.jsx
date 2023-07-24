@@ -1,11 +1,13 @@
 
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { add } from '../features/player/playerSlice';
 
 const MusicCard = ({data}) => {
+  const dispatch = useDispatch();
 
   return (
-  
-    <div className="w-[317px] h-[328px] bg-[#242424] rounded-2xl  cursor-pointer relative ">
+    <div className="w-[317px] h-[328px] bg-[#242424] rounded-2xl  cursor-pointer relative "  onClick={()=>dispatch(add(data.track))}>
       <div className="  overflow-hidden w-full">
         <img src={data?.track?.album?.images[0]?.url} alt="" className="w-full rounded-2xl  "/>
       </div>
@@ -19,7 +21,7 @@ const MusicCard = ({data}) => {
   );
 };
 MusicCard.propTypes = {
-  data: PropTypes.isRequired,
+  data: PropTypes.object,
 
 };
 export default MusicCard;
