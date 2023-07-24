@@ -1,7 +1,7 @@
 
 
+const clientId = "10a6a679992847328290f17973ad3115";
 export const auth = async () => {
-    const clientId = "10a6a679992847328290f17973ad3115";
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
 
@@ -69,10 +69,32 @@ export async function getAccessToken(clientId, code) {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: params,
   });
+  const response = await result.json();
+  localStorage.setItem("refresh_token",response.refresh_token);
+  localStorage.setItem("token",response.access_token);
 
-  const { access_token } = await result.json();
+  return response.access_token;
+
+}
+  export async function getAccessTokenFromRefreshToken(refresh_token) {
   
-  return access_token;
+    const params = new URLSearchParams();
+    params.append('client_id', clientId);
+    params.append('grant_type', 'refresh_token');
+    params.append('refresh_token', refresh_token);
+
+   
+    const result = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params,
+    });
+
+  const response = await result.json();
+  localStorage.setItem("refresh_token",response.refresh_token);
+  localStorage.setItem("token",response.access_token);
+
+  return response.access_token;
 }
 
 export async function generateCodeChallenge(codeVerifier) {

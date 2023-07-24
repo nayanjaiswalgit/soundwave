@@ -4,11 +4,15 @@ import { CgProfile } from "react-icons/cg";
 import { CiSearch } from "react-icons/ci";
 import { BiSolidPlaylist } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
-import { Link, NavLink } from "react-router-dom";
-
+import { Link, NavLink, } from "react-router-dom";
 
 const Sidebar = () => {
-  const sylenav = ({ isActive, isPending }) =>
+  const clickHandler = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("verifier");
+  };
+  const style = ({ isActive, isPending }) =>
     isPending
       ? " flex  items-center gap-2 pl-6 h-12 rounded-r-full"
       : isActive
@@ -16,33 +20,35 @@ const Sidebar = () => {
       : "flex  items-center gap-2 pl-6 h-12 rounded-r-full";
 
   return (
-    <div className="flex w-[22rem] h-full bg-[#1ED760]  flex-col  relative text-xl   flex-grow-1">
-       
+    <div className="hidden md:flex w-[22rem] h-full bg-[#1ED760]  flex-col  relative text-xl   flex-grow-1">
       <div className="mx-auto mt-6">
         <img src={logo} alt="logo" />
       </div>
       <div className="flex flex-col gap-4 pt-10  font-medium">
-        <NavLink to="/home" className={sylenav}>
+        <NavLink to="/home" className={style}>
           <AiFillHome /> <p>Home</p>
         </NavLink>
-        <NavLink   to="/profile" className={sylenav}>
+        <NavLink to="/profile" className={style}>
           <CgProfile />
           <p>Profile</p>
         </NavLink>
-        <NavLink to="/search" className={sylenav}>
+        <NavLink to="/search" className={style}>
           <CiSearch />
           <p>Search</p>
         </NavLink>
-        <NavLink to="/playlist" className={sylenav}>
+        <NavLink to="/playlist" className={style}>
           <BiSolidPlaylist />
           <p>Feature Playlist</p>
         </NavLink>
       </div>
-      <Link to="/login" className=" gap-2  bottom-3 absolute flex  items-center  pl-6 h-12 rounded-r-full" >
-        <MdLogout />
-        <p>Logout</p>
+      <Link to={"/login"}>
+        <button
+          onClick={clickHandler}
+          className=" gap-2  bottom-3 absolute flex  items-center  pl-6 h-12 rounded-r-full"
+        >
+          Logout <MdLogout />{" "}
+        </button>{" "}
       </Link>
-     
     </div>
   );
 };

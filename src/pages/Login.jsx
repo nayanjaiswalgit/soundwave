@@ -27,10 +27,20 @@ const Login = () => {
 
   useEffect(() => {
     const test = async() => { 
+      
     if(code){
       const user  = await auth();
       console.log(user);
-    
+      if(user.href){
+        console.log(user)
+      
+      setTimeout(() => {
+        document.location ="http://localhost:5173/home" ;
+      }, 1000);}
+     else{
+      document.location ="http://localhost:5173/login" ;
+     }
+     
     }
    
     }

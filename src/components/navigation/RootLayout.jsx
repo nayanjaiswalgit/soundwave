@@ -1,10 +1,17 @@
-import { Outlet } from "react-router-dom"
+import { Navigate, Outlet } from "react-router-dom"
 import Sidebar from "./Sidebar"
 import Track from "../player/Track"
 import { useEffect } from "react";
 import { fetchData } from "../../api/spotifyAPI";
 
-const track = true;
+function useAuth() {
+  return !!localStorage.getItem("token");
+}
+
+
+
+
+const track =false;
 const RootLayout = () => {
   useEffect(() => {
     const data = async() => {
@@ -20,12 +27,12 @@ const RootLayout = () => {
   
   return (
 
-    <div  className={`${ track ? 'h-[calc(100vh-8rem)]' : 'h-full' }  flex`}>
+    <div  className={`${ track ? 'h-[calc(100vh-8rem)]' : 'h-full' }  flex `}>
        
         <Sidebar />
 
    
-    <div className="w-[calc(100vw-22rem)] overflow-auto">
+    <div className="md:w-[calc(100vw-22rem)]  w-screen overflow-auto">
     <Outlet/>
     </div>
  { track && <Track/>} 
