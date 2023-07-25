@@ -1,8 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchData } from "../../api/spotifyAPI";
+
 const initialState = {
   tracks: [],
-  currentPlaying: [],
+  trackNo: 0,
+  currentPlaying: null,
+  previous: [],
   isLoading: false,
   isError: null,
   tracker: 0,
@@ -10,9 +13,7 @@ const initialState = {
 };
 
 export const fetchTrack = createAsyncThunk("user/playerSlice", async (url) => {
- 
-  const Data = fetchData(url);
-
+  const Data = await fetchData(url);
   return Data;
 });
 
@@ -21,19 +22,34 @@ const playerSlice = createSlice({
   initialState,
   reducers: {
     add(state, action) {
+      state.currentPlaying = action.payload;
+      state.previous.push(action.payload);
+      state.tracker = state.previous.length - 1;
+      state.tracks = [] ;
       
-      state.currentPlaying.push(action.payload);
-      state.tracker = state.currentPlaying.length - 1;
     },
     next(state) {
-      if (state.tracker < state.tracks.length) {
-        state.currentPlaying.push(state.tracks[state.tracker]);
-        state.tracker = state.tracker + 1;
+      if (state.tracker + 1 < state.previous.length) {
+        state.tracker += 1;
+        state.currentPlaying = state.previous[state.tracker];
+        console.log("if next");
+      } else if (state.trackNo + 1 < state.tracks.length) {
+        state.trackNo += 1;
+        state.previous.push(state.tracks[state.trackNo].track);
+        state.currentPlaying = state.tracks[state.trackNo].track;
+        state.tracker = state.previous.length - 1;
+        console.log("else next");
       }
     },
     prev(state) {
-      if (state.tracker > state.currentPlaying.length) {
-        state.tracker = state.tracker - 1;
+      if (state.previous.length > 1 && state.tracker > 0) {
+        state.tracker -= 1;
+        state.currentPlaying = state.previous[state.tracker];
+      } else if (state.trackNo > 0) {
+        state.trackNo -= 1;
+        state.currentPlaying = state.tracks[state.trackNo].track;
+        state.previous.push(state.currentPlaying);
+        state.tracker = state.previous.length - 1;
       }
     },
     play(state) {
@@ -47,15 +63,16 @@ const playerSlice = createSlice({
         state.isError = false;
       })
       .addCase(fetchTrack.fulfilled, (state, action) => {
-        state.tracker = state.tracker + 1;
-        state.isLoading = true;
+        state.isLoading = false;
         state.tracks = action.payload.tracks.items;
-        state.currentPlaying[state.tracker] = action.payload.tracks.items[state.tracker].track ;
-       
+        state.trackNo = 0;
+        state.currentPlaying = action.payload.tracks.items[0].track;
+        state.previous.push(action.payload.tracks.items[0].track);
+        state.tracker = state.previous.length - 1;
       })
       .addCase(fetchTrack.rejected, (state, action) => {
         state.isLoading = false;
-         state.isError = action.error.message;
+        state.isError = action.error.message;
       });
   },
 });

@@ -17,3 +17,26 @@ background-color: rgb(128, 128, 128);
   box-shadow: -555px 0 0 550px white; 
   border: 15px 15px solid #012
 }
+
+.Volume_slider {
+  width: 100%;
+  appearance: none;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+background-color: rgb(128, 128, 128);
+
+
+
+}
+.Volume_slider::-webkit-slider-thumb{
+  appearance: none;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-1px);
+  border: 4px 2px solid white;
+  border-radius: 100%;
+  background-color: white;
+  box-shadow: -550px 0 0 550px white; 
+  border: 15px 15px solid #012
+}

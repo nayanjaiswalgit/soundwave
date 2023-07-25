@@ -7,6 +7,7 @@ import { auth } from "../../AuthorizationPage";
 
 
 import { useEffect } from "react";
+// import {  useNavigate } from "react-router-dom";
 
 
 
@@ -24,6 +25,7 @@ const initialValues = {
 
 const Login = () => {
 
+  // const navigate = useNavigate()
  
   useEffect(() => {
     const test = async() => { 
@@ -36,9 +38,12 @@ const Login = () => {
         console.log(user)
       
       setTimeout(() => {
-        document.location ="http://localhost:5173/home" ;
+        
+    //   navigate("/home")
+         document.location ="http://localhost:5173/home" ;
       }, 1000);}
      else{
+     
       document.location ="http://localhost:5173/login" ;
      }
      

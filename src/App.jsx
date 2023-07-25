@@ -58,8 +58,8 @@ function App() {
   }
 
   useEffect(() => {
-   loginflow()
-    
+
+     dispatch(UserProfile());
     dispatch(fetchPlaylist());
     dispatch(fetchThisWeekSongs());
 

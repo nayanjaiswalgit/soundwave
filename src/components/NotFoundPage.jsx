@@ -1,11 +1,11 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
-import pagenotfound from "../../src/assets/giphy.gif"
+import notfound from "../../src/assets/notfound.gif"
 
 const NotFoundPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 w-full h-full">
-        <img src={pagenotfound} alt="" className="w-[20%]"/>
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 w-full">
+        <img src={notfound} alt="" className="w-[20%]"/>
       <div className="text-center">
         <h1 className="text-6xl font-bold text-gray-900">404</h1>
         <p className="text-xl font-medium text-gray-600 mb-8">

@@ -1,6 +1,6 @@
 
 
-const clientId = "13ea06586b374e579289bb025106a4ae";
+const clientId = "7ddce02f79ce4303b2fe69ed2e96324c";
 export const auth = async () => {
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');

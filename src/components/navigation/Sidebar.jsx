@@ -7,7 +7,7 @@ import { MdLogout } from "react-icons/md";
 import { Link, NavLink, } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LogOut } from "../../features/authSlice";
-import Track from "../player/Track";
+
 
 const Sidebar = () => {
 const dispatch = useDispatch();

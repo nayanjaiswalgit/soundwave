@@ -1,48 +1,28 @@
 
-import { useCallback, useEffect, useRef } from "react";
 import { IoMdPlay } from "react-icons/io";
-import { IoPause } from "react-icons/io5";
-import { IoPlaySkipBackSharp } from "react-icons/io5";
-import { IoPlaySkipForwardSharp } from "react-icons/io5";
+import { IoPause , IoPlaySkipBackSharp , IoPlaySkipForwardSharp } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { next, play, prev } from "../../features/player/playerSlice";
 
-const Control = ({song,setPlay,audioRef,isPlaying,setSong,progressBarRef  , timeProgress, duration, setTimeProgress,}) => {
-  const playAnimationRef = useRef();
-
-  const repeat = useCallback(() => {
-    const currentTime = audioRef.current.currentTime;
-    setTimeProgress(currentTime);
-    progressBarRef.current.value = currentTime;
-    progressBarRef.current.style.setProperty(
-      '--range-progress',
-      `${(progressBarRef.current.value / duration) * 100}%`
-    );
-
-    playAnimationRef.current = requestAnimationFrame(repeat);
-  }, [audioRef, duration, progressBarRef, setTimeProgress,song]);
-
-
-  useEffect(() => {
-    if (isPlaying) {
-      console.log("playing")
-      audioRef.current.play();
-      playAnimationRef.current = requestAnimationFrame(repeat);
-    } else {
-      audioRef.current.pause();
-      cancelAnimationFrame(playAnimationRef.current);
-    }
-  }, [isPlaying, audioRef, repeat]);
-
-  const clickHandler = ()=> {
-    setPlay((prev)=>!prev)
-    
-  }
-
+const Control = () => {
+  const isPlaying = useSelector((state) => state.track.isPlaying);
+  const previous = useSelector((state) => state.track.tracker);
+  const track = useSelector((state) => state.track.tracks);
+  const present  = useSelector((state) => state.track.previous.length);
+  const dispatch = useDispatch();
+  const is_next =  previous - present > 0  ?  true :false   || track.length > 1 ? true : false  ;
+ 
   return (
-    <div className="text-xl flex gap-5 justify-center items-center ">
-    
-<button onClick={()=>setSong((prev)=>prev-1)}><IoPlaySkipBackSharp  /></button>
-    <button onClick={clickHandler}> {isPlaying ?  <IoPause  />:<IoMdPlay   />}</button>
-   <button onClick={()=>setSong((prev)=>prev+1)} > <IoPlaySkipForwardSharp  /></button>  
+    <div className="text-xl flex gap-5  justify-end items-center md:justify-center  ">
+      <button  disabled={!previous} onClick={() => dispatch(prev())} className={`${!previous && "opacity-50"}`}>
+        <IoPlaySkipBackSharp />
+      </button>
+      <button onClick={() => dispatch(play())}>
+        {isPlaying ? <IoPause /> : <IoMdPlay />}
+      </button>
+      <button  disabled={!is_next}  onClick={() => dispatch(next()) }  className={`${!is_next && "opacity-50"}`}>
+        <IoPlaySkipForwardSharp />
+      </button>
     </div>
   );
 };

@@ -1,26 +1,25 @@
 import {  Outlet } from "react-router-dom"
 import Sidebar from "./Sidebar"
-import Track from "../player/Track"
+import AudioPlayer from "../player/AudioPlayer"
 
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import NowPlayingBox from "../player/NowPlayingBox";
 
 
 
 const RootLayout = () => {
-  const current = useSelector(state=>state.track.currentPlaying);
-  const cheack = useSelector(state=>state.track.tracker);
+  const current =  useSelector(state=>state.track.currentPlaying);
+
 
   useEffect(() => {
   
 
-  }, [cheack])
+  }, [current])
   console.log(current);
   
   return (
 
-    <div  className={`${ cheack ? 'h-[calc(100vh-8rem)]' : 'h-full' }  flex `}>
+    <div  className={`${ current ? 'h-[calc(100vh-8rem)]' : 'h-full' }  flex `}>
        
         <Sidebar />
 
@@ -29,7 +28,7 @@ const RootLayout = () => {
     <Outlet/>
 
     </div>
-  {  cheack && <Track/>}
+  {  current && <AudioPlayer/>}
     </div>
 
   )

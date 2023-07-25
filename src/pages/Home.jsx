@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import MusicPlaylist from "../components/MusicPlaylist";
 
-
 function getTimeOfDay() {
   const hour = new Date().getHours();
 
@@ -24,9 +23,7 @@ const Home = () => {
   );
   const This_week_song = useSelector((state) => state?.Weak_Song.songs?.items);
 
-
   const greeting = getTimeOfDay();
-
 
   return (
     <div className="w-full p-[42px]">
