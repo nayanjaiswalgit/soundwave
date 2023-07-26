@@ -19,7 +19,7 @@ const RootLayout = () => {
  
   return (
 
-    <div  className={`${ current ? 'h-[calc(100vh-8rem)]' : 'md:h-full h-screen' }  m-auto flex `}>
+    <div  className={`${ current ? 'h-[calc(100vh-8rem)]' : 'md:h-full h-screen' } flex `}>
        
         <Sidebar />
 

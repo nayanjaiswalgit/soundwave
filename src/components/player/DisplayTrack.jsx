@@ -6,8 +6,8 @@ const DisplayTrack  = ({currentTrack}) => {
     <div className="flex md:justify-center md:items-center items-start justify-start overflow-hidden md:w-auto w-2/3">
       <img src={currentTrack?.album?.images[1]?.url} alt="" className="md:w-20 w-14" />
       <div className="  h-full ml-5 ">
-        <p className="text-lg font-semibold  ">{currentTrack.album.name}</p>
-        <p className="text-sm font-medium my-2  leading-4">{currentTrack.artists.map(name=>name.name)+" , "}</p>
+        <p className="text-lg font-semibold whitespace-nowrap ">{currentTrack.album.name}</p>
+        <p className="text-sm font-medium my-2  leading-4 whitespace-nowrap">{currentTrack.artists.map(name=>name.name)+" , "}</p>
       </div>
     </div>
   );

@@ -23,7 +23,8 @@ import {
 import { UserProfile} from "./slices/authSlice";
 import { fetchThisWeekSongs } from "./slices/trackSlice";
 import { fetchPlaylist } from "./slices/playlistSlice";
-import MobileNav from "./components/MobileNav";
+
+import PlaylistPage from "./components/PlaylistPage";
 
 function App() {
 
@@ -76,6 +77,7 @@ function App() {
             <Route path="home" element={<Home />} />
             <Route path="profile" element={<Profile />} />
             <Route path="search" element={<Search />} />
+            <Route path="playlist" element={<PlaylistPage />} />
           </Route>
   
           <Route path="/login" element={<Login />} />
