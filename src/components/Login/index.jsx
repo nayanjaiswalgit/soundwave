@@ -7,7 +7,8 @@ import { auth } from "../../utils/AuthorizationPage";
 
 
 import { useEffect } from "react";
-// import {  useNavigate } from "react-router-dom";
+ import {  useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 
@@ -24,10 +25,16 @@ const initialValues = {
 
 
 const Login = () => {
+  const user = useSelector(state => state.auth.user)
+  const navigate = useNavigate()
 
-  // const navigate = useNavigate()
+  if(user?.href){
+    navigate("/home")
+  }
  
   useEffect(() => {
+
+    
     const test = async() => { 
       
     if(code){
@@ -39,7 +46,7 @@ const Login = () => {
       
       setTimeout(() => {
         
-    //   navigate("/home")
+    
          document.location ="http://localhost:5173/home" ;
       }, 1000);}
      else{

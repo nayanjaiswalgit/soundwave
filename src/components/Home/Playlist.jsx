@@ -6,7 +6,7 @@ const Playlist = ({ playlist, Name }) => {
   const [seeAll, setSeeAll] = useState(false);
 
   return (
-    <div className="w-full mt-[44px] overflow-hidden">
+    <div className=" w-full mt-[44px] overflow-hidden">
       <div className="flex justify-between items-center mb-7 text-2xl ">
         <p className="">{Name}</p>
         <button
@@ -16,10 +16,10 @@ const Playlist = ({ playlist, Name }) => {
           {seeAll ? "close" : "See All"}
         </button>
       </div>
-      <div className={` flex  gap-5 w-fit  ${seeAll && "flex-wrap"}`}>
+      <div className={` flex  md:gap-5 gap-3  w-fit ${seeAll && "flex-wrap"}`}>
         {playlist?.map((data, index) => {
           return (
-            <Card key={index} data={data} onClick={() => console.log(data)} />
+           <Card key={index}  data={data} onClick={() => console.log(data)} />
           );
         })}
       </div>

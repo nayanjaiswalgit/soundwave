@@ -19,20 +19,20 @@ const Progressbar = ({ progressBarRef, audioRef, timeProgress, duration }) => {
 
   return (
     <div className="w-[75%] h-full flex  items-center justify-center gap-5  font-semibold">
-      <p>{formatTime(timeProgress)}</p>
+      <p className="hidden md:block ">{formatTime(timeProgress)}</p>
 
-      <div className="w-full bg-[white] h-2 bg-opacity-50 rounded-full relative overflow-hidden">
+      <div className="md:w-full md:-mt-4 bg-[white] h-2 bg-opacity-50 rounded-full md:relative overflow-hidden absolute -bottom-2 left-0 right-0 md:ml-0 ml-2">
         <input
           type="range"
           ref={progressBarRef}
-          className=" slider absolute top-0  bottom-0 left-0 "
+          className=" slider absolute top-0  bottom-0 left-0  "
           min="0"
           max="29"
           onChange={handleChange}
           defaultValue="0"
         ></input>
       </div>
-      <p>{formatTime(duration)}</p>
+      <p className="hidden md:block">{formatTime(duration)}</p>
     </div>
   );
 };

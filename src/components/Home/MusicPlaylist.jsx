@@ -18,7 +18,7 @@ const MusicPlaylist = ({ Featured_playlist, Name }) => {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {Featured_playlist?.map((data, index) => (
-          <div key={index} className="w-[317px] h-[328px]">
+          <div key={index} >
             <MusicCard data={data} />
           </div>
         ))}

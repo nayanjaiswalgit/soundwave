@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 const DisplayTrack  = ({currentTrack}) => {
   return (
     
-    <div className="flex justify-center items-center  ">
+    <div className="flex md:justify-center md:items-center items-start justify-start overflow-hidden md:w-auto w-2/3">
       <img src={currentTrack?.album?.images[1]?.url} alt="" className="md:w-20 w-14" />
       <div className="  h-full ml-5 ">
         <p className="text-lg font-semibold  ">{currentTrack.album.name}</p>

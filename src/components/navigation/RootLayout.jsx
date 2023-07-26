@@ -4,6 +4,7 @@ import AudioPlayer from "../Player/AudioPlayer"
 
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import MobileNav from "../MobileNav";
 
 
 
@@ -18,16 +19,17 @@ const RootLayout = () => {
  
   return (
 
-    <div  className={`${ current ? 'h-[calc(100vh-8rem)]' : 'h-full' }  flex `}>
+    <div  className={`${ current ? 'h-[calc(100vh-8rem)]' : 'md:h-full h-screen' }  m-auto flex `}>
        
         <Sidebar />
 
    
-    <div className="md:w-[calc(100vw-22rem)]  overflow-auto">
+    <div className="md:w-[calc(100vw-22rem)] w-screen overflow-auto">
     <Outlet/>
 
     </div>
   {  current && <AudioPlayer/>}
+  <MobileNav/>
     </div>
 
   )

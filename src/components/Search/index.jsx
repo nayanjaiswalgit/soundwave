@@ -21,11 +21,11 @@ const Search = () => {
   };
 
   return (
-    <div className="mx-10 my-8 overflow-auto  ">
+    <div className="md:mx-10 md:my-8 p-4 overflow-auto  ">
       <SearchBar changehandler={changehandler} />
       {isLoading && (
         <div className="flex justify-center items-center h-[80vh] overflow-hidden">
-          {" "}
+      
           <AiOutlineLoading3Quarters className="animate-spin text-6xl" />
         </div>
       )}

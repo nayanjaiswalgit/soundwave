@@ -32,7 +32,7 @@ const Volume = ({ audioRef }) => {
           max={100}
           value={volume}
           onChange={(e) => setVolume(e.target.value)}
-          className="Volume_slider h-1 mt-2 ml-1 w-0 group-hover:w-12 transition-all duration-300"
+          className="Volume_slider h-1 mt-2 ml-1 w-12 md:w-0 group-hover:w-12 transition-all duration-300"
         />
       </div>
     </div>

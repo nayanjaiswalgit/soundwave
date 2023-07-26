@@ -45,7 +45,7 @@ const Player = ({ data }) => {
   }, [isPlaying, audioRef, repeat, change, data]);
 
   return (
-    <div className=" w-[85%] h-[36px] md:flex justify-around items-center ">
+    <div className=" md:w-[85%] md:h-[36px] flex md:justify-around items-center justify-center md:gap-0 gap-1">
       <audio
         src={data.preview_url}
         ref={audioRef}

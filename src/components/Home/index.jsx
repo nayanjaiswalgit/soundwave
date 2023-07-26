@@ -26,7 +26,7 @@ const Home = () => {
   const greeting = getTimeOfDay();
 
   return (
-    <div className="w-full p-[42px]">
+    <div className=" md:w-full md:p-[42px] p-5 h-screen w-screen">
       <div className="flex justify-between">
         <div className="md:text-6xl text-[#1ED760] w-full text-4xl whitespace-nowrap">
           {greeting}
@@ -39,7 +39,7 @@ const Home = () => {
               <div className="w-3 h-3 bg-[#1ED760]  rounded-full"></div>
             </div>
           </button>
-          <button className="w-[50px] ml-7 ">
+          <button className="w-[50px] ml-7 hidden md:block ">
             <Link to="/profile">
               <img
                 className="rounded-full"
