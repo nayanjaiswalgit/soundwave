@@ -75,6 +75,7 @@ export async function getAccessToken(clientId, code) {
   localStorage.setItem("refresh_token", response.refresh_token);
   localStorage.setItem("token", response.access_token);
 
+  
   return response.access_token;
 }
 export async function getAccessTokenFromRefreshToken() {
@@ -95,6 +96,8 @@ export async function getAccessTokenFromRefreshToken() {
   if (response.token) {
     localStorage.setItem("token", response.token);
     localStorage.setItem("refresh_token", response.refresh_token);
+    const expirationTime = Date.now() + response.expires_in * 1000;
+    localStorage.setItem("tokenExpirationTime", expirationTime);
   }
   console.log(response);
 

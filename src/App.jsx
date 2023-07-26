@@ -1,11 +1,4 @@
-
-import {
-  Route,
-  Navigate,
-  BrowserRouter,
-  Routes,
-  
-} from "react-router-dom";
+import { Route, Navigate, BrowserRouter, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
@@ -16,39 +9,18 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import NotFoundPage from "./components/NotFoundPage";
-import {
-
-  getAccessTokenFromRefreshToken,
-} from "./utils/AuthorizationPage";
-import { UserProfile} from "./slices/authSlice";
+import { UserProfile, refreshAccessTokenAsync } from "./slices/authSlice";
 import { fetchThisWeekSongs } from "./slices/trackSlice";
 import { fetchPlaylist } from "./slices/playlistSlice";
 
 import PlaylistPage from "./components/PlaylistPage";
 
 function App() {
-
-  const user = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
- 
   let token = localStorage.getItem("token");
- 
-  const loginflow = () => {
-    token = localStorage.getItem("token");
-    const refresh_token = localStorage.getItem("refresh_token");
 
-    if(token && !user.href){
-      console.log("flow is working")
-      getAccessTokenFromRefreshToken(refresh_token);
-      dispatch(UserProfile());
-    }
-    console.log("failed")
-  }
-  
   function useAuth() {
-  
-    if ( token ) {
-      console.log(user)
+    if (token ) {
       return true;
     }
     return false;
@@ -60,15 +32,24 @@ function App() {
   }
 
   useEffect(() => {
+    const tokenExpirationTime = localStorage.getItem("tokenExpirationTime");
+    if (token && tokenExpirationTime) {
+      const expirationTime = parseInt(tokenExpirationTime, 10);
+      if (Date.now() >= expirationTime) {
+        dispatch(refreshAccessTokenAsync());
+        console.log("Timeout");
+      } else {
+        console.log("Timehai");
 
-     dispatch(UserProfile());
-    dispatch(fetchPlaylist());
-    dispatch(fetchThisWeekSongs());
+        dispatch(UserProfile());
+        dispatch(fetchPlaylist());
+        dispatch(fetchThisWeekSongs());
+      }
+    }
 
- 
     return () => {};
-  }, []);
-
+  }, [token,dispatch]);
+console.log("app render")
   return (
     <div className="h-screen flex max-w-screen overflow-hidden">
       <BrowserRouter>
@@ -79,7 +60,7 @@ function App() {
             <Route path="search" element={<Search />} />
             <Route path="playlist" element={<PlaylistPage />} />
           </Route>
-  
+
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
