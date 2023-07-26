@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchData } from "../../api/spotifyAPI";
+import { fetchData } from "../api/spotifyAPI";
 
 const initialState = {
   playlists: [],
@@ -12,7 +12,7 @@ export const fetchPlaylist = createAsyncThunk("player/playlist", async () => {
   return fetchData("https://api.spotify.com/v1/browse/featured-playlists");
 });
 
-const playlistSlice = createSlice({
+const PlaylistSlice = createSlice({
   name: "playlist",
   initialState,
   reducers: {},
@@ -31,4 +31,4 @@ const playlistSlice = createSlice({
       });
   },
 });
-export default playlistSlice.reducer;
+export default PlaylistSlice.reducer;

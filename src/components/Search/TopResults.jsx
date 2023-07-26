@@ -1,7 +1,7 @@
 
 import { useDispatch } from "react-redux";
-import topcart from "../assets/top-card.png";
-import { fetchTrack } from "../features/player/playerSlice";
+
+import { fetchTrack } from "../../slices/playerSlice";
 const   TopResults = ({data}) => {
   const dispatch = useDispatch();
   return (

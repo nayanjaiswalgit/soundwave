@@ -21,7 +21,6 @@ const Player = ({ data }) => {
     const seconds = audioRef.current.duration;
     setDuration(seconds);
     progressBarRef.current.max = seconds;
-    console.log("Loaded");
   };
 
   const repeat = useCallback(() => {
@@ -53,7 +52,6 @@ const Player = ({ data }) => {
         onLoadedMetadata={onLoadedMetadata}
       />
       <Control />
-    
 
       <Progressbar
         progressBarRef={progressBarRef}
@@ -62,14 +60,12 @@ const Player = ({ data }) => {
         timeProgress={timeProgress}
       />
 
-    <Volume audioRef={audioRef}/>
-    
+      <Volume audioRef={audioRef} />
     </div>
   );
 };
 
 export default Player;
 Player.propTypes = {
-  data :  PropTypes.object
-}
-
+  data: PropTypes.object,
+};

@@ -1,9 +1,9 @@
-import pic from "../assets/pic.png";
+
 import { BsBellFill } from "react-icons/bs";
-import Playlist from "../components/Playlist";
+import Playlist from "./Playlist";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import MusicPlaylist from "../components/MusicPlaylist";
+import MusicPlaylist from "./MusicPlaylist";
 
 function getTimeOfDay() {
   const hour = new Date().getHours();
@@ -43,7 +43,7 @@ const Home = () => {
             <Link to="/profile">
               <img
                 className="rounded-full"
-                src={user?.images[1].url ? user?.images[1].url : pic}
+                src={user?.images[1].url }
                 alt=""
               />
             </Link>

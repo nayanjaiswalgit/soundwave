@@ -2,7 +2,7 @@
 import { IoMdPlay } from "react-icons/io";
 import { IoPause , IoPlaySkipBackSharp , IoPlaySkipForwardSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { next, play, prev } from "../../features/player/playerSlice";
+import { next, play, prev } from "../../slices/playerSlice";
 
 const Control = () => {
   const isPlaying = useSelector((state) => state.track.isPlaying);

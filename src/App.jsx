@@ -1,4 +1,4 @@
-import "./App.css";
+
 import {
   Route,
   Navigate,
@@ -6,10 +6,10 @@ import {
   Routes,
   
 } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Profile from "./pages/Profile";
-import Search from "./pages/Search";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
+import Search from "./components/Search";
 import RootLayout from "./components/navigation/RootLayout";
 import { useEffect } from "react";
 
@@ -19,10 +19,10 @@ import NotFoundPage from "./components/NotFoundPage";
 import {
 
   getAccessTokenFromRefreshToken,
-} from "../AuthorizationPage";
-import { UserProfile} from "./features/authSlice";
-import { fetchThisWeekSongs } from "./features/track/trackSlice";
-import { fetchPlaylist } from "./features/playlist/PlaylistSlice";
+} from "./utils/AuthorizationPage";
+import { UserProfile} from "./slices/authSlice";
+import { fetchThisWeekSongs } from "./slices/trackSlice";
+import { fetchPlaylist } from "./slices/playlistSlice";
 
 function App() {
 

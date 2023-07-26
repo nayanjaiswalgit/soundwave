@@ -1,9 +1,9 @@
-import Searchlist from "./searchlist"
+import Searchlist from "./Searchlist"
 
 
 
 const SearchResult = ({data}) => {
-  console.log(data);
+
   return (
   <div className="mt-12 font-semibold">
     <p className="text-4xl">Songs</p>

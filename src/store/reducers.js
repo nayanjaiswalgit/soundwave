@@ -1,15 +1,16 @@
 import { combineReducers } from "redux";
-import userReducer from '../features/user/userSlice'
-import PlaylistSlice from "../features/playlist/PlaylistSlice";
-import trackSlice from "../features/track/trackSlice";
-import playerSlice from "../features/player/playerSlice";
-import authSlice from "../features/authSlice";
-import searchSlice from "../features/searchSlice";
+
+
+import trackSlice from "../slices//trackSlice";
+import playerSlice from "../slices/playerSlice";
+import authSlice from "../slices/authSlice";
+import searchSlice from "../slices/searchSlice";
+import playlistSlice from "../slices/playlistSlice";
 
 
 const rootReducer = combineReducers ({
-    user:userReducer ,
-    playlist :PlaylistSlice ,
+  
+    playlist :playlistSlice ,
     Weak_Song : trackSlice,
     track : playerSlice,
     auth:authSlice,

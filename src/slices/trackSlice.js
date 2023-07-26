@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchData } from "../../api/spotifyAPI";
+import { fetchData } from "../api/spotifyAPI";
 
 const initialState = {
     songs : [],

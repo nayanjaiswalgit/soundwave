@@ -1,5 +1,5 @@
-import React from 'react'
-import serach from "../assets/search.svg";
+
+import search from "../../assets/search.svg";
 const SearchBar = ({changehandler}) => {
   return (
     <div className=" text-white  h-[59px] bg-[#2E2E2E] relative rounded-3xl flex justify-center items-center ">
@@ -12,7 +12,7 @@ const SearchBar = ({changehandler}) => {
         />
         <label htmlFor="search" className="absolute left-6 ">
           <img
-            src={serach}
+            src={search}
             alt=""
             className="text-white cursor-pointer w-[31.27px]"
           />

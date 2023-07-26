@@ -1,9 +1,9 @@
-import logo from "../assets/logo.png";
+import logo from "../../assets/logo.png";
 import { useFormik } from "formik";
-import { signUpSchema } from "../schemas";
+import { signUpSchema } from "../../utils/schemas";
 import { FaLock } from "react-icons/fa";
 import { BiUserCircle } from "react-icons/bi";
-import { auth } from "../../AuthorizationPage";
+import { auth } from "../../utils/AuthorizationPage";
 
 
 import { useEffect } from "react";

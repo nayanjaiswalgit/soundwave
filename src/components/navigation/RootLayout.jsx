@@ -1,6 +1,6 @@
 import {  Outlet } from "react-router-dom"
-import Sidebar from "./Sidebar"
-import AudioPlayer from "../player/AudioPlayer"
+import Sidebar from "../Sidebar"
+import AudioPlayer from "../Player/AudioPlayer"
 
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -15,8 +15,7 @@ const RootLayout = () => {
   
 
   }, [current])
-  console.log(current);
-  
+ 
   return (
 
     <div  className={`${ current ? 'h-[calc(100vh-8rem)]' : 'h-full' }  flex `}>

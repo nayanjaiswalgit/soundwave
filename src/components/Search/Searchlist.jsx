@@ -1,6 +1,6 @@
 import { IoMdPlay } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import { add } from "../features/player/playerSlice";
+import { add } from "../../slices/playerSlice";
 
 function millisToMinutesAndSeconds(millis) {
   var minutes = Math.floor(millis / 60000);

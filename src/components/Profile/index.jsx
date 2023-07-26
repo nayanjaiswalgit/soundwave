@@ -1,5 +1,4 @@
 
-import pic from "../assets/pic.png";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import {useSelector }from 'react-redux';
 
@@ -12,7 +11,7 @@ const Profile = () => {
       <p className="text-5xl  font-semibold">Profile</p>
       <div className="flex  mt-12 items-center flex-wrap">
         <div>
-          <img   src={user?.images[1]?.url ?user?. images[1]?.url : pic } alt="profilepic" className="w-[18rem] rounded-full " />
+          <img   src={user?.images[1]?.url } alt="profile_pic" className="w-[18rem] rounded-full " />
         </div>
         <div className="p-8 ">
           <p className="text-3xl font-bold ">{user?.display_name}</p>
