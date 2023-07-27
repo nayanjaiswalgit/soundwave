@@ -44,7 +44,12 @@ const authSlice = createSlice({
       .addCase(UserProfile.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isAuthenticated = true;
-       
+
+        if (action.payload.expires_in) {
+          const expirationTime = Date.now() + action.payload.expires_in * 1000;
+
+          localStorage.setItem("tokenExpirationTime", expirationTime);
+        }
       })
       .addCase(UserProfile.rejected, (state, action) => {
         state.isAuthenticated = false;
@@ -73,3 +78,14 @@ export default authSlice.reducer;
 export const { loginSuccess, LogOut } = authSlice.actions;
 
 
+export const checkTokenExpiration = () => (dispatch, getState) => {
+  const { token } = getState().auth;
+  const tokenExpirationTime = localStorage.getItem("tokenExpirationTime");
+
+  if (token && tokenExpirationTime) {
+    const expirationTime = parseInt(tokenExpirationTime, 10);
+    if (Date.now() >= expirationTime) {
+      dispatch(refreshAccessTokenAsync());
+    }
+  }
+};
