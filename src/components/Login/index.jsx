@@ -26,7 +26,8 @@ const initialValues = {
 
 
 const Login = () => {
-  const user = useSelector(state => state.auth.user)
+
+  const isuser = useSelector(state => state.auth.user)
   const navigate = useNavigate()
   const dispatch = useDispatch();
 
@@ -45,11 +46,11 @@ const Login = () => {
       if(user.href){
        dispatch(loginSuccess(user))
       
-       
+       console.log("isuser",isuser);
 
-        
+       navigate('/home')
     
-       document.location ="http://localhost:5173/home"
+     
       }
      else{
      

@@ -1,4 +1,4 @@
-const clientId = "7ddce02f79ce4303b2fe69ed2e96324c";
+const clientId = "951c6baf6e694c47aac14451a9b06d3d";
 
 import { LogOut, UserProfile, refreshAccessTokenAsync } from "../slices/authSlice";
 import store from "../store/configureStore"
@@ -102,9 +102,7 @@ export const sessionHandler = () => {
   const token = localStorage.getItem("token");
   const tokenExpirationTime = localStorage.getItem("tokenExpirationTime");
 
-  if (!token) {
-    store.dispatch(LogOut());
-  }
+
   if (token && tokenExpirationTime) {
     const expirationTime = parseInt(tokenExpirationTime, 10);
     if (Date.now() >= expirationTime) {

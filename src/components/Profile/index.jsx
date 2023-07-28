@@ -5,17 +5,25 @@ import { LogOut } from "../../slices/authSlice";
 import { MdLogout } from "react-icons/md";
 
 const Profile = () => {
-  var user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth?.user);
+  const error = useSelector((state) => state.auth?.error);
+  const loading = useSelector((state) => state.auth?.loading);
+  if(error){
+    <div>{error}</div>
+  }
+  if(loading){
+    <div>Loading</div>
+  }
+
+
+
   return (
     <div className=" mt-12 md:ml-[73px] relative">
       <p className="text-5xl  font-semibold text-center md:text-start">
-        Profile  
+        Profile
       </p>
-      <div>
-  
-       
-      </div>
+      <div></div>
       <div className="flex  mt-12 md:items-start items-center md:flex-wrap flex-col">
         <div>
           <img
@@ -25,7 +33,9 @@ const Profile = () => {
           />
         </div>
         <div className="p-8 ">
-          <p className="text-3xl font-bold md:text-start text-center">{user?.display_name}</p>
+          <p className="text-3xl font-bold md:text-start text-center">
+            {user?.display_name}
+          </p>
           <p className="text-xl text-gray-400 text-[#FFFFFF80] mt-2">
             {user?.email}
           </p>
@@ -36,11 +46,16 @@ const Profile = () => {
               <FaArrowUpRightFromSquare></FaArrowUpRightFromSquare>
             </button>
           </a>
-          <div ><Link to={"/login"}> 
-          <button className=" w-full mt-5 md:hidden flex justify-center items-center gap-2 text-[#1ED760]" onClick={() => dispatch(LogOut())}>
-          Logout <MdLogout /> 
-          </button>
-        </Link></div>
+          <div>
+            <Link to={"/login"}>
+              <button
+                className=" w-full mt-5 md:hidden flex justify-center items-center gap-2 text-[#1ED760]"
+                onClick={() => dispatch(LogOut())}
+              >
+                Logout <MdLogout />
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
