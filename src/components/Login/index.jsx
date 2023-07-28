@@ -3,12 +3,13 @@ import { useFormik } from "formik";
 import { signUpSchema } from "../../utils/schemas";
 import { FaLock } from "react-icons/fa";
 import { BiUserCircle } from "react-icons/bi";
-import { auth } from "../../utils/AuthorizationPage";
+import { auth, redirectToAuthCodeFlow } from "../../utils/AuthorizationPage";
 
 
 import { useEffect } from "react";
  import {  useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess } from "../../slices/authSlice";
 
 
 
@@ -27,6 +28,7 @@ const initialValues = {
 const Login = () => {
   const user = useSelector(state => state.auth.user)
   const navigate = useNavigate()
+  const dispatch = useDispatch();
 
   if(user?.href){
     navigate("/home")
@@ -39,16 +41,16 @@ const Login = () => {
       
     if(code){
       const user  = await auth();
-      console.log(user);
+   
       if(user.href){
-       
-        console.log(user)
+       dispatch(loginSuccess(user))
       
-      setTimeout(() => {
+       
+
         
     
-         document.location ="http://localhost:5173/home" ;
-      }, 1000);}
+       document.location ="http://localhost:5173/home"
+      }
      else{
      
       document.location ="http://localhost:5173/login" ;
@@ -61,7 +63,7 @@ const Login = () => {
     return () => {
      
     }
-  }, [])
+  }, [dispatch])
   
     
   
@@ -78,7 +80,7 @@ const Login = () => {
     initialValues: initialValues,
     validationSchema: signUpSchema,
     onSubmit: () => {
-      auth();
+      redirectToAuthCodeFlow();
     },
   });
   return (

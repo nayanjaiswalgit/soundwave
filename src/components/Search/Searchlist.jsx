@@ -11,8 +11,8 @@ function millisToMinutesAndSeconds(millis) {
 const Searchlist = ({track}) => {
  const dispatch = useDispatch()
   return (
-    <div className=" h-[81px] flex justify-between items-center gap-4 py-3 md:px-[20px]" onClick={()=>dispatch(add(track))}>
-      <div className=" flex justify-between align-center">
+    <div className=" h-[81px] flex justify-between items-center gap-4 py-3 md:px-[20px] " onClick={()=>dispatch(add(track))}>
+      <div className=" flex justify-between align-center cursor-pointer">
         <div className="min:w-[58px] h-[58px]">
           <img className="min-w-[58px] h-[58px]" src={track?.album.images[2]?.url} alt="" />
         </div>

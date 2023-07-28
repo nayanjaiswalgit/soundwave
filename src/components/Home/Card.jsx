@@ -6,7 +6,7 @@ const Card = ({ data }) => {
   const dispatch = useDispatch();
   return (
     <div
-      className=" w-[calc((100vw/2)-2rem)] md:w-[317px] md:h-[328px]  bg-[#242424] rounded-2xl cursor-pointer relative hover:bg-[#343333] hover:drop-shadow-2xl hover:opacity-80 "
+      className=" w-[calc((100vw/2)-2rem)] md:w-[317px] md:h-[328px]   bg-[#242424] rounded-2xl cursor-pointer relative hover:bg-[#343333] hover:drop-shadow-2xl hover:opacity-80 "
       onClick={() => dispatch(fetchTrack(data.href))}
     >
       <div className="overflow-hidden">

@@ -11,7 +11,7 @@ export const  searchSong = createAsyncThunk(
     'song/search', async(url)=>{
    
         const data = fetchData(url)
-     console.log(data)
+ 
       return data;
       }
 )

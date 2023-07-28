@@ -5,11 +5,9 @@ import Playlist from "./Home/Playlist";
 
 const PlaylistPage = () => {
 
-  const Featured_playlist = useSelector(
-    (state) => state?.playlist?.playlists[0]?.payload?.playlists?.items
-  );
-  const This_week_song = useSelector((state) => state?.Weak_Song.songs?.items);
+  const Featured_playlist = useSelector((state) => state.playlist.playlists);
 
+  const This_week_song = useSelector((state) => state.playlist.songs.items);
   return (
     <div className=" md:w-full md:p-[42px] p-5 h-screen w-screen">
         <div className="md:text-6xl text-[#1ED760] w-full text-4xl whitespace-nowrap">
