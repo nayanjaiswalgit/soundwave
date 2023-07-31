@@ -18,9 +18,7 @@ const Playlist = ({ playlist, Name }) => {
       </div>
       <div className={` flex  md:gap-5 gap-3  w-fit ${seeAll && "flex-wrap"}`}>
         {playlist?.map((data, index) => {
-          return (
-           <Card key={index}  data={data} onClick={() => console.log(data)} />
-          );
+          return <Card key={index} data={data} />;
         })}
       </div>
     </div>

@@ -79,7 +79,6 @@ export async function getAccessTokenFromRefreshToken() {
     const expirationTime = Date.now() + response.expires_in * 1000;
     localStorage.setItem("tokenExpirationTime", expirationTime);
   }
-  console.log(response);
 
   return response;
 }

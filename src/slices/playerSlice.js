@@ -25,20 +25,17 @@ const playerSlice = createSlice({
       state.currentPlaying = action.payload;
       state.previous.push(action.payload);
       state.tracker = state.previous.length - 1;
-      state.tracks = [] ;
-      
+      state.tracks = [];
     },
     next(state) {
       if (state.tracker + 1 < state.previous.length) {
         state.tracker += 1;
         state.currentPlaying = state.previous[state.tracker];
-        console.log("if next");
       } else if (state.trackNo + 1 < state.tracks.length) {
         state.trackNo += 1;
         state.previous.push(state.tracks[state.trackNo].track);
         state.currentPlaying = state.tracks[state.trackNo].track;
         state.tracker = state.previous.length - 1;
-        console.log("else next");
       }
     },
     prev(state) {
