@@ -5,7 +5,7 @@ import Progressbar from "./Progressbar";
 import { useSelector } from "react-redux";
 import Volume from "./Volume";
 
-const Player = ({ data }) => {
+const MainPlayer = ({ data }) => {
   const isPlaying = useSelector((state) => state.track.isPlaying);
 
   const playAnimationRef = useRef();
@@ -61,7 +61,7 @@ const Player = ({ data }) => {
   );
 };
 
-export default Player;
-Player.propTypes = {
+export default MainPlayer;
+MainPlayer.propTypes = {
   data: PropTypes.object,
 };
