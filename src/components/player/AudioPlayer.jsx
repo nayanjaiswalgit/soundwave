@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import DisplayTrack from "./DisplayTrack";
-import Player from ".";
 import { useEffect } from "react";
 
 const AudioPlayer = () => {
