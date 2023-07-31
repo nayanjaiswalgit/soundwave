@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import { fetchTrack } from "../../slices/playerSlice";
 const FilterResult = ({ data, name }) => {
@@ -17,6 +18,21 @@ const FilterResult = ({ data, name }) => {
       </div>
     </div>
   );
+};
+
+FilterResult.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      href: PropTypes.string.isRequired,
+      images: PropTypes.arrayOf(
+        PropTypes.shape({
+          url: PropTypes.string.isRequired,
+        })
+      ),
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default FilterResult;
@@ -42,4 +58,15 @@ const ArtistList = ({ artist }) => {
       </div>
     </div>
   );
+};
+ArtistList.propTypes = {
+  artist: PropTypes.shape({
+    href: PropTypes.string.isRequired,
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        url: PropTypes.string.isRequired,
+      })
+    ),
+    name: PropTypes.string.isRequired,
+  }).isRequired,
 };

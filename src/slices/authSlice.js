@@ -5,15 +5,12 @@ import { getAccessTokenFromRefreshToken } from "../utils/AuthorizationPage";
 const initialState = {
   isAuthenticated: false,
   user: null,
-  isLoading : false,
+  isLoading: false,
   error: null,
 };
 
 export const UserProfile = createAsyncThunk("user/auth", async () => {
-
   return fetchData("https://api.spotify.com/v1/me");
-
-
 });
 
 export const refreshAccessTokenAsync = createAsyncThunk(
@@ -28,11 +25,11 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     loginSuccess(state, action) {
-      console.log("login sucess")
       state.isAuthenticated = true;
+      console.log(action.payload);
       state.user = action.payload.user;
       state.error = false;
-      state.isLoading = false ;
+      state.isLoading = false;
     },
     LogOut(state) {
       state.isAuthenticated = false;
@@ -45,13 +42,12 @@ const authSlice = createSlice({
     builder
       .addCase(UserProfile.pending, (state) => {
         state.error = null;
-        state.isLoading = true ;
+        state.isLoading = true;
       })
       .addCase(UserProfile.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isAuthenticated = true;
-        state.isLoading = false ;
-       
+        state.isLoading = false;
       })
       .addCase(UserProfile.rejected, (state, action) => {
         state.isAuthenticated = false;
@@ -60,12 +56,10 @@ const authSlice = createSlice({
       })
       .addCase(refreshAccessTokenAsync.fulfilled, (state) => {
         state.isAuthenticated = true;
-        
+
         state.isLoading = false;
-      
       })
-      .addCase(refreshAccessTokenAsync.rejected, (state, ) => {
-       
+      .addCase(refreshAccessTokenAsync.rejected, (state) => {
         state.isAuthenticated = false;
         state.user = null;
         state.isLoading = false;
@@ -76,5 +70,3 @@ const authSlice = createSlice({
 
 export default authSlice.reducer;
 export const { loginSuccess, LogOut } = authSlice.actions;
-
-

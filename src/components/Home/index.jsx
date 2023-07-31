@@ -6,7 +6,6 @@ import MusicPlaylist from "./MusicPlaylist";
 import { useEffect } from "react";
 import { fetchPlaylist, fetchThisWeekSongs } from "../../slices/playlistSlice";
 
-
 function getTimeOfDay() {
   const hour = new Date().getHours();
 
@@ -21,9 +20,10 @@ function getTimeOfDay() {
 const Home = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.auth?.user);
+  const user = useSelector((state) => state.auth.user);
 
   const Featured_playlist = useSelector((state) => state.playlist.playlists);
+  const { isLoading, error } = useSelector((state) => state.playlist);
 
   const This_week_song = useSelector((state) => state.playlist.songs.items);
 
@@ -32,8 +32,15 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchPlaylist());
     dispatch(fetchThisWeekSongs());
-    
   }, [dispatch]);
+
+  if (isLoading) {
+    return <div>isLoading</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className=" md:w-full md:p-[42px] p-5 h-screen w-screen">
@@ -51,7 +58,7 @@ const Home = () => {
           </button>
           <button className="w-[50px] ml-7 hidden md:block ">
             <Link to="/profile">
-              <img className="rounded-full" src={user?.images[1].url} alt="" />
+              <img className="rounded-full" src={user?.images[1]?.url} alt="" />
             </Link>
           </button>
         </div>

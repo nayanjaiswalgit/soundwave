@@ -34,7 +34,7 @@ const PlaylistSlice = createSlice({
       })
       .addCase(fetchPlaylist.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.playlists = action.payload.playlists.items;
+        state.playlists = action.payload.playlists?.items;
       })
       .addCase(fetchPlaylist.rejected, (state, action) => {
         state.isLoading = false;
@@ -49,7 +49,8 @@ const PlaylistSlice = createSlice({
         state.songs = action.payload;
       })
       .addCase(fetchThisWeekSongs.rejected, (state, action) => {
-        (state.isLoading = false), (state.error = action.error.message);
+        state.isLoading = false ; 
+        state.error = action.error.message;
       });
   },
 });

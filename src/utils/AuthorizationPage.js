@@ -1,23 +1,7 @@
 const clientId = "951c6baf6e694c47aac14451a9b06d3d";
 
-import { LogOut, UserProfile, refreshAccessTokenAsync } from "../slices/authSlice";
-import store from "../store/configureStore"
-export const auth = async () => {
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get("code");
-
-  if (!code) {
-    redirectToAuthCodeFlow(clientId);
-  } else {
-    const accessToken = await getAccessToken(clientId, code);
-
-    const profile = await fetchProfile(accessToken);
-    if (accessToken) {
-      localStorage.setItem("token", accessToken);
-    }
-    return profile;
-  }
-};
+import { refreshAccessTokenAsync } from "../slices/authSlice";
+import store from "../store/configureStore";
 
 export async function fetchProfile(token) {
   const result = await fetch("https://api.spotify.com/v1/me", {
@@ -46,7 +30,10 @@ export function generateCodeVerifier(length) {
   return text;
 }
 
-export async function getAccessToken(clientId, code) {
+const params = new URLSearchParams(window.location.search);
+const code = params.get("code");
+
+export async function getAccessToken() {
   const verifier = localStorage.getItem("verifier");
 
   const params = new URLSearchParams();
@@ -88,35 +75,31 @@ export async function getAccessTokenFromRefreshToken() {
   if (response.token) {
     localStorage.setItem("token", response.token);
     localStorage.setItem("refresh_token", response.refresh_token);
-    
-      const expirationTime = Date.now() + response.expires_in * 1000;
-      localStorage.setItem("tokenExpirationTime", expirationTime);
-    
+
+    const expirationTime = Date.now() + response.expires_in * 1000;
+    localStorage.setItem("tokenExpirationTime", expirationTime);
   }
   console.log(response);
 
   return response;
 }
 export const sessionHandler = () => {
-
   const token = localStorage.getItem("token");
   const tokenExpirationTime = localStorage.getItem("tokenExpirationTime");
 
-
   if (token && tokenExpirationTime) {
+    let check;
     const expirationTime = parseInt(tokenExpirationTime, 10);
     if (Date.now() >= expirationTime) {
-      store.dispatch(refreshAccessTokenAsync());
-      store.dispatch(UserProfile())
-      console.log("Timeout");
-    } 
-    else {
-      console.log("Timehai");
-       store.dispatch(UserProfile());
+      store.dispatch(refreshAccessTokenAsync()).then((check = true));
+      return check;
     }
-}
 
-}
+    return true;
+  } else {
+    return false;
+  }
+};
 export async function generateCodeChallenge(codeVerifier) {
   const encoder = new TextEncoder();
   const data = encoder.encode(codeVerifier);
@@ -128,10 +111,3 @@ export async function generateCodeChallenge(codeVerifier) {
     .replace(/\//g, "_")
     .replace(/=+$/, "");
 }
-
-const AuthorizationPage = () => {
-  auth();
-};
-
-export default AuthorizationPage;
-

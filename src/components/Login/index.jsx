@@ -3,72 +3,39 @@ import { useFormik } from "formik";
 import { signUpSchema } from "../../utils/schemas";
 import { FaLock } from "react-icons/fa";
 import { BiUserCircle } from "react-icons/bi";
-import { auth, redirectToAuthCodeFlow } from "../../utils/AuthorizationPage";
-
+import {
+  getAccessToken,
+  redirectToAuthCodeFlow,
+} from "../../utils/AuthorizationPage";
 
 import { useEffect } from "react";
- import {  useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { loginSuccess } from "../../slices/authSlice";
-
-
-
-const params = new URLSearchParams(window.location.search);
-const code = params.get('code');
-
-
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { UserProfile } from "../../slices/authSlice";
 
 const initialValues = {
   email: "",
   password: "",
 };
 
-
-
 const Login = () => {
-
-  const isuser = useSelector(state => state.auth.user)
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  if(user?.href){
-    navigate("/home")
-  }
- 
   useEffect(() => {
-
-    
-    const test = async() => { 
-      
-    if(code){
-      const user  = await auth();
-   
-      if(user.href){
-       dispatch(loginSuccess(user))
-      
-       console.log("isuser",isuser);
-
-       navigate('/home')
-    
-     
+    const test = async () => {
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
+      if (code) {
+        getAccessToken().then(() => {
+          dispatch(UserProfile()).then(navigate("/home"));
+        });
       }
-     else{
-     
-      document.location ="http://localhost:5173/login" ;
-     }
-     
-    }
-   
-    }
+    };
     test();
-    return () => {
-     
-    }
-  }, [dispatch])
-  
-    
-  
-  
+  }),
+    [];
+
   const {
     values,
     errors,

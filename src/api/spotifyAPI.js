@@ -1,8 +1,9 @@
-const token = localStorage.getItem("token");
+
 
 export const fetchData = async (url) => {
-  
+  const token = localStorage.getItem("token");
   try {
+    if(!token){throw new Error("Token Not Found")}
     const response = await fetch(url, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
