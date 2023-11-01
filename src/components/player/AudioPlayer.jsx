@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import DisplayTrack from "./DisplayTrack";
 import { useEffect } from "react";
+import Player from "./index";
 
 const AudioPlayer = () => {
   const array = useSelector((state) => state.track.currentPlaying);
